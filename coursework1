@@ -1,0 +1,46 @@
+calculatedSalaries=[]
+calculatedRates=[]
+
+def generateInput(inputType):
+    rate = (int)(input(f"Enter {inputType}: "))
+    while (rate < 0 or rate > 5):
+        rate = (int)(input(f"Incorrect value, should be between 0 and 5, {inputType}: "))
+    return rate    
+
+while(True):
+    speed=generateInput("Speed")
+    shoot=generateInput("Shoot")
+    passing=generateInput("Passing")
+    defend=generateInput("Defend")
+    dribbling=generateInput("Dribbling")
+    physicality=generateInput("Physicality")
+    total=speed+shoot+passing+defend+dribbling+physicality
+    
+    rate=total*100/30
+    print(rate)
+    
+    calculatedRates.append(rate)
+    
+    if(rate>80):
+        salary=1000
+    else:
+        if(rate>60):
+            salary=700
+        else:
+            if(rate>45 or rate < 60):
+                salary=700500
+            else:
+                if(rate<30):
+                    salary=400
+    calculatedSalaries.append(salary)
+    next=input("Continue adding players?")
+    next=next.lower()
+    if(not(next=="yes" )):
+        break;
+    
+outputLength = len(calculatedSalaries)
+print("\n")
+print("\n")
+print("Salary Rate")
+for i in range(outputLength):
+    print(calculatedSalaries[i], " ", round(calculatedRates[i], 2))
